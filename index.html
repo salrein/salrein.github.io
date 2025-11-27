@@ -75,9 +75,16 @@
 				<!-- Calendly link widget begin -->
 						<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 						<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-						<a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/juergen-salrein/exploration-call'});return false;">Schedule time with me</a>
+				<!-- Styled button instead of plain link -->
+						<ul class="actions">
+							<li>
+      							<button type="button" 
+        						onclick="Calendly.initPopupWidget({url: 'https://calendly.com/juergen-salrein/exploration-call'});return false;">
+        						📅 Schedule a Strategy Call
+      							</button>
+    						</li>
+  						</ul>
 				<!-- Calendly link widget end -->
-
 						
 						<p>Or get in touch with me via the contact form</p>
 						
@@ -459,6 +466,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 	</body>
 
 </html>
+
 
 
 
