@@ -89,19 +89,55 @@
 						<p>Or get in touch with me via the contact form</p>
 						
 						<div class="row">
-							<div class="col-8 col-12-small">
-								<form method="post" action="#">
-									<div class="row gtr-uniform gtr-50">
-										<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" /></div>
-										<div class="col-6 col-12-xsmall"><input type="text" role="role" id="role" placeholder="Role" /></div>
-										<div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Email" /></div>
-										<div class="col-12"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
-									</div>
-								</form>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</div>
+							<form id="contactForm" action="https://formspree.io/f/mqavbodp" method="POST">
+ 								<div class="row gtr-uniform gtr-50">
+    								<div class="col-6 col-12-xsmall">
+      									<input type="text" name="name" id="name" placeholder="Name" required />
+  									</div>
+    								<div class="col-6 col-12-xsmall">
+      									<input type="text" name="role" id="role" placeholder="Role" />
+    								</div>
+    								<div class="col-6 col-12-xsmall">
+      									<input type="email" name="email" id="email" placeholder="Email" required />
+    								</div>
+    								<div class="col-12">
+      									<textarea name="message" id="message" placeholder="Message" rows="4" required></textarea>
+    								</div>
+  								</div>
+  								<ul class="actions">
+    								<li><input type="submit" value="Send Message" /></li>
+  								</ul>
+							</form>
+
+					<!-- Success message container -->
+							<p id="formSuccess" style="display:none; color:green; font-weight:bold;">
+  								✅ Thank you, your message has been sent!
+							</p>
+
+							<script>
+								document.getElementById("contactForm").addEventListener("submit", async function(e) {
+  									e.preventDefault(); // prevent default form submission
+  									const form = e.target;
+  									const data = new FormData(form);
+
+  									try {
+    									const response = await fetch(form.action, {
+      										method: form.method,
+      										body: data,
+      										headers: { 'Accept': 'application/json' }
+    									});
+
+    									if (response.ok) {
+      										form.reset(); // clear the form
+      										document.getElementById("formSuccess").style.display = "block"; // show success message
+    									} else {
+      										alert("❌ There was a problem sending your message. Please try again.");
+    									}
+  									} catch (error) {
+    									alert("❌ Network error. Please try again later.");
+  									}
+								});
+							</script>
 							<div class="col-4 col-12-small">
 								<ul class="labeled-icons">
 									<li>
@@ -466,6 +502,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 	</body>
 
 </html>
+
 
 
 
